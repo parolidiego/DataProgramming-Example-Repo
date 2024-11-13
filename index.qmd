@@ -1,0 +1,49 @@
+---
+title: "First Quarto Presentation"
+subtitle: "Dataviz of gapminder"
+author: "Diego Paroli"
+format: revealjs
+editor: visual
+#execute:
+  #echo: true
+---
+
+```{r}
+library(tidyverse)
+library(gapminder)
+library(ggplot2)
+```
+
+
+## Loading data
+
+We are loading the dataset `gapminder` including in the `{gapminder}` R package
+
+```{r}
+gapminder
+```
+
+---
+
+## Filter 
+
+```{r}
+#| echo: true
+gapminder_2007 <- gapminder |> 
+  filter(year == 2007)
+```
+Echo true displays the code (otherwise by default is false and code will not show and only the output)
+
+---
+
+## Plot the data
+
+```{r}
+#| echo: true
+#| code-fold: true
+ggplot(gapminder_2007)+
+  geom_point(aes(x=lifeExp, y=gdpPercap, color=continent))+
+  ggthemes::scale_color_colorblind()
+```
+
+Code fold allows for the code to appear and disappear
